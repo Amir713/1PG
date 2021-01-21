@@ -37,8 +37,7 @@ app.use('/api/*', (req, res) => sendError(res, { code: 404, message: 'Not found.
 
 app.use('/',
   middleware.updateUser, rootRoutes,
-  authRoutes,
-  middleware.validateUser, middleware.updateGuilds, dashboardRoutes
+  authRoutes, dashboardRoutes
 );
 app.all('*', (req, res) => res.render('errors/404'));
 

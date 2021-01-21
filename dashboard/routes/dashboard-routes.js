@@ -1,11 +1,24 @@
 const express = require('express');
-const { validateGuild, updateMusicPlayer } = require('../modules/middleware');
+const { validateUser, updateGuilds, validateGuild, updateMusicPlayer } = require('../modules/middleware');
 const log = require('../modules/audit-logger');
 const guilds = require('../../data/guilds');
 const logs = require('../../data/logs');
 const bot = require('../../bot');
+const economy = require('../../modules/economy');
 
 const router = express.Router();
+
+router.get('/servers/:id/leaderboard', async (req, res) => {
+  const guild = bot.guilds.cache.get(req.params.id);
+  
+  res.render('dashboard/extensions/leaderboard', {
+    savedGuild: await guilds.get(req.params.id),
+    leaderboard: await economy.leaderboard(req.params.id),
+    guild
+  });
+});
+
+router.use(validateUser, updateGuilds);
 
 router.get('/dashboard', (req, res) => res.render('dashboard/index'));
 
@@ -17,6 +30,7 @@ router.get('/servers/:id', validateGuild, updateMusicPlayer,
     player: res.locals.player,
     key: res.cookies.get('key')
   }));
+
 
 router.put('/servers/:id/:module', validateGuild, async (req, res) => {
   try {

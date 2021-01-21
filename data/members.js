@@ -9,4 +9,8 @@ module.exports = new class {
     return await SavedMember.findOne(filter)
       || await new SavedMember(filter).save();
   }
+
+  async getInGuild(guildId) {
+    return await SavedMember.find({ guildId });
+  }
 }

@@ -1,18 +1,18 @@
-nav.navbar.navbar-expand-lg
+nav.navbar.navbar-expand-lg.px-3
   a.navbar-brand(href='/') 1PG
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbar', aria-controls='navbar', aria-expanded='false', aria-label='Toggle navigation')
     span.navbar-toggler-icon
-  #navbar.collapse.navbar-collapse
+  #navbar.collapse.navbar-collapse.container-fluid
     .navbar-nav
       a.nav-link(href='/commands')
         i.fas.fa-code
-        span.pl-1 Commands
-    .navbar-nav.ml-auto
+        span.px-1 Commands
+    .navbar-nav.d-flex
       if user
         .dropdown
-          .dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          .dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false', role='button', data-bs-toggle='dropdown')
             img.user-avatar.round(src=user.avatarUrl(32))
-            span.pl-2 #{user.username}
+            span.px-1 #{user.username}
           .dropdown-menu.dropdown-menu-right
             a.dropdown-item(href='/dashboard') #[i.fas.fa-cogs.text-muted] Dashboard
             hr

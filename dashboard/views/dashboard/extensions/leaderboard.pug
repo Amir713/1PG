@@ -1,0 +1,21 @@
+doctype
+html(lang='en')
+  head
+    include ../../includes/header.pug
+    include ../../includes/mixins.pug
+
+    link(rel='stylesheet', href='/css/index.css')
+  body
+    include ../../includes/navbar.pug
+    .text-center.mb-4
+      h1.display-5 #{guild.name} Leaderboard
+      p.lead View #{guild.name}'s leaderboard.
+
+    .container
+      each entry in leaderboard
+        .card.bg-transparent.p-2
+          .float-left.pe-2 #{entry.rank}
+          +user(entry.user)
+          .float-right.text-warning #{entry.savedMember.coins} COINS
+      else
+        p There is no money here...
