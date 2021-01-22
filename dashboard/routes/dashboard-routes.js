@@ -4,7 +4,7 @@ const log = require('../modules/audit-logger');
 const guilds = require('../../data/guilds');
 const logs = require('../../data/logs');
 const bot = require('../../bot');
-const economy = require('../../modules/economy');
+const economy = require('../../modules/economy/economy');
 
 const router = express.Router();
 
